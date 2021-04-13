@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import Todos from './Components/Todo'
 import Header from './Components/Header'
@@ -8,13 +8,13 @@ import About from './Components/About';
 import { BrowserRouter as Router , Route } from 'react-router-dom';
 import axios from 'axios'
 // import uuid from 'uuid'
-class App extends Component {
+class App extends React.Component {
   state={
     Todos:[]
   };
   componentDidMount(){
     axios.get("https://jsonplaceholder.typicode.com/todos?_limit=10").then(res=>{
-       this.setState({ Todos:res.data,   })
+       this.setState({ Todos:res.data   })
     })
   }
   markComplete =(id)=>{
@@ -37,7 +37,7 @@ class App extends Component {
 //                   Todos:[...this.state.Todos.filter(todo=>todo.id!==id)]
 //                 })
 //   console.log(id);
-axios.delete ('https://jsonplaceholder.typicode.com/posts/${id}').then(res =>{
+axios.delete (`https://jsonplaceholder.typicode.com/posts/${id}`).then(res =>{
   this.setState({
                       Todos:[...this.state.Todos.filter(todo=>todo.id!==id)]
                     })
